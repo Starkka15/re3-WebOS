@@ -27,7 +27,7 @@ This is a **webOS port** of re3 (GTA III reverse engineered) for the **HP webOS 
 
 ### **CRITICAL - Game-Breaking:**
 1. **Animation System Crash** - Game crashes when trying to initialize character animations (~20 seconds after launch). This prevents gameplay from starting.
-2. **No 3D Rendering** - Black screen where 3D geometry should appear. Caused by shader compilation failures on Adreno 220 GPU (GLSL ES 1.00 limitations).
+2. **Basic 3D Rendering** - Caused by shader compilation failures on Adreno 220 GPU (GLSL ES 1.00 limitations).
 
 ### **Major Issues:**
 3. **No Audio** - Cutscenes and gameplay have no sound
@@ -235,7 +235,7 @@ Please keep derivative work open source and give proper credit.
 - Original re3: [GTAmodding/re3](https://github.com/GTAmodding/re3)
 - LibRW: [aap/librw](https://github.com/aap/librw)
 - Vita Port: [TheOfficialFloW/re3](https://github.com/TheOfficialFloW/re3)
-- webOS SDK: HP webOS SDK 3.0.5
+- webOS SDK: [HP webOS SDK 3.0.5](https://sdk.webosarchive.org/)
 
 ---
 
