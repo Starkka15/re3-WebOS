@@ -1,40 +1,75 @@
 <img src="https://github.com/Jai-JAP/re-GTA/blob/re3/res/images/logo_1024.png?raw=true" alt="re3 logo" width="200">
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FJai-JAP%2Fre-GTA%2Fbadge%3Fref%3Dre3&style=flat)](https://actions-badge.atrox.dev/Jai-JAP/re-GTA/goto?ref=re3)
-<a href="https://discord.gg/RFNbjsUMGg"><img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" /></a>
+# re3 - WebOS Port (HP TouchPad)
 
-## Intro
+## ⚠️ **WORK IN PROGRESS - NOT PLAYABLE YET**
 
-In this repository you'll find the fully reversed source code for GTA III ([re3](https://github.com/Jai-JAP/re-GTA/tree/re3) branch) and GTA VC ([reVC](https://github.com/Jai-JAP/re-GTA/tree/reVC) branch).
+This is a **webOS port** of re3 (GTA III reverse engineered) for the **HP webOS TouchPad (2011)**, NOT for Nintendo Switch or other platforms.
 
-It has been tested and works on Windows, Linux, MacOS and FreeBSD, on x86, amd64, arm and arm64.\
-Rendering is handled either by original RenderWare (D3D8)
-or the reimplementation [librw](https://github.com/aap/librw) (D3D9, OpenGL 2.1 or above, OpenGL ES 2.0 or above).\
-Audio is done with MSS (using dlls from original GTA) or OpenAL.
+**Current Status:** Proof of Concept - Partial Functionality ✅
+**Last Updated:** December 31, 2025
 
-The project has also been ported to the [Nintendo Switch](https://github.com/AGraber/re3-nx/),
-[Playstation Vita](https://github.com/Rinnegatamante/re3) and
-[Nintendo Wii U](https://github.com/GaryOderNichts/re3-wiiu/).
+---
 
-We cannot build for PS2 or Xbox yet. If you're interested in doing so, get in touch with us.
+## 🎯 What Works
 
-## Installation
+- ✅ Game launches and initializes
+- ✅ SDL2 window and OpenGL ES 2.0 context creation
+- ✅ Touch input system with virtual controls
+- ✅ File I/O and case-insensitive file loading
+- ✅ Texture loading (1,408+ textures successfully loaded)
+- ✅ Cutscene playback with skip functionality
+- ✅ 2D rendering (HUD, menus, sprites)
+- ✅ Asset streaming system (CD streaming operational)
+- ✅ Game loop and timer systems
 
-- re3 requires PC game assets to work, so you **must** own [a copy of GTA III](https://store.steampowered.com/app/12100/Grand_Theft_Auto_III/).
-- Build re3 or download the latest build:
-  - [Windows D3D9 MSS 32bit](https://nightly.link/Jai-JAP/re-GTA/workflows/re3_msvc_x86/re3/re3_Release_win-x86-librw_d3d9-mss.zip)
-  - [Windows D3D9 64bit](https://nightly.link/Jai-JAP/re-GTA/workflows/re3_msvc_amd64/re3/re3_Release_win-amd64-librw_d3d9-oal.zip)
-  - [Windows OpenGL 64bit](https://nightly.link/Jai-JAP/re-GTA/workflows/re3_msvc_amd64/re3/re3_Release_win-amd64-librw_gl3_glfw-oal.zip)
-  - [Linux 64bit](https://nightly.link/Jai-JAP/re-GTA/workflows/build-cmake-conan/re3/ubuntu-18.04-gl3.zip)
-  - [MacOS 64bit x86-64](https://nightly.link/Jai-JAP/re-GTA/workflows/build-cmake-conan/re3/macos-latest-gl3.zip)
-- Extract the downloaded zip over your GTA 3 directory and run re3. The zip includes the binary, updated and additional gamefiles and in case of OpenAL the required dlls.
+## ❌ Known Issues & Limitations
 
-## Screenshots
+### **CRITICAL - Game-Breaking:**
+1. **Animation System Crash** - Game crashes when trying to initialize character animations (~20 seconds after launch). This prevents gameplay from starting.
+2. **No 3D Rendering** - Black screen where 3D geometry should appear. Caused by shader compilation failures on Adreno 220 GPU (GLSL ES 1.00 limitations).
 
-![re3 2021-02-11 22-57-03-23](https://user-images.githubusercontent.com/1521437/107704085-fbdabd00-6cbc-11eb-8406-8951a80ccb16.png)
-![re3 2021-02-11 22-43-44-98](https://user-images.githubusercontent.com/1521437/107703339-cbdeea00-6cbb-11eb-8f0b-07daa105d470.png)
-![re3 2021-02-11 22-46-33-76](https://user-images.githubusercontent.com/1521437/107703343-cd101700-6cbb-11eb-9ccd-012cb90524b7.png)
-![re3 2021-02-11 22-50-29-54](https://user-images.githubusercontent.com/1521437/107703348-d00b0780-6cbb-11eb-8afd-054249c2b95e.png)
+### **Major Issues:**
+3. **No Audio** - Cutscenes and gameplay have no sound
+4. **OpenGL Errors** - GL_INVALID_ENUM errors (non-critical but present)
+
+### **Hardware Limitations:**
+- **GPU:** Adreno 220 doesn't support advanced GLSL features (dynamic array indexing, complex shaders)
+- **Memory:** 1 GB RAM limits asset loading
+- **Performance:** Target 30 FPS, older hardware may struggle
+
+**For detailed technical information, see:** [PROGRESS_DEC31_2025.md](../PROGRESS_DEC31_2025.md)
+
+---
+
+## 🖥️ Target Hardware
+
+- **Device:** HP webOS TouchPad (2011)
+- **CPU:** Qualcomm Snapdragon APQ8060 (Dual-core 1.2 GHz)
+- **GPU:** Adreno 220 (OpenGL ES 2.0 / GLSL ES 1.00)
+- **RAM:** 1 GB
+- **Resolution:** 1024×768
+- **OS:** webOS 3.0.5
+
+---
+
+## 📚 About re3
+
+re3 is a fully reversed source code for GTA III. The original re3 project works on Windows, Linux, MacOS, and FreeBSD. It has been ported to [Nintendo Switch](https://github.com/AGraber/re3-nx/), [Playstation Vita](https://github.com/Rinnegatamante/re3), and [Nintendo Wii U](https://github.com/GaryOderNichts/re3-wiiu/).
+
+**This repository is specifically for the webOS port only.**
+
+## Installation (WebOS)
+
+**Requirements:**
+- re3 requires PC game assets to work, so you **must** own [a copy of GTA III](https://store.steampowered.com/app/12100/Grand_Theft_Auto_III/)
+- HP webOS TouchPad with webOS 3.0.5
+- webOS SDK installed on development machine
+- GTA III game files copied to device at `/media/internal/.gta3/`
+
+**Current State:** No stable builds available yet. You must build from source (see below).
+
+---
 
 ## Improvements
 
@@ -93,109 +128,87 @@ others can easily be achieved (increasing limis, see `config.h`),
 others will simply have to be rewritten and integrated into the code directly.
 Sorry for the inconvenience.
 
-## Building from Source  
+## Building from Source (WebOS)
 
-When using premake, you may want to point GTA_III_RE_DIR environment variable to GTA3 root folder if you want the executable to be moved there via post-build script.
+**Prerequisites:**
+- webOS SDK 3.0.5
+- CMake 3.10+
+- WSL (Windows Subsystem for Linux) or Linux development machine
+- webOS Toolchain
 
-Clone the repository with `git clone --recursive https://github.com/Huga22118/Reverse-Engineered-III.git`. Then `cd re-GTA` into the cloned repository.
-
-<details><summary>Linux Premake</summary>
-
-For Linux using premake, proceed: [Building on Linux](https://github.com/GTAmodding/re3/wiki/Building-on-Linux)
-
-</details>
-
-<details><summary>Linux Conan</summary>
-
-Install python and conan, and then run build.
+**Build Configuration:**
+```cmake
+LIBRW_PLATFORM=GL3               # GLES2+ with shaders
+LIBRW_GL3_GFXLIB=SDL2           # SDL2 for window/input
+CMAKE_BUILD_TYPE=Release
+WEBOS_TOUCHPAD=ON
+CMAKE_TOOLCHAIN_FILE=cmake/webos/WebOSToolchain.cmake
 ```
-conan export vendor/librw librw/master@
-mkdir build
-cd build
-conan install .. re3/master@ -if build -o re3:audio=openal -o librw:platform=gl3 -o librw:gl3_gfxlib=glfw --build missing -s re3:build_type=RelWithDebInfo -s librw:build_type=RelWithDebInfo
-conan build .. -if build -bf build -pf package
+
+**Build Steps:**
+```bash
+# Clone with submodules
+git clone --recursive https://github.com/Starkka15/re3-WebOS.git
+cd re3-WebOS
+
+# Create build directory
+mkdir build-webos-wsl
+cd build-webos-wsl
+
+# Configure with CMake
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../cmake/webos/WebOSToolchain.cmake \
+         -DLIBRW_PLATFORM=GL3 \
+         -DLIBRW_GL3_GFXLIB=SDL2 \
+         -DWEBOS_TOUCHPAD=ON \
+         -DCMAKE_BUILD_TYPE=Release
+
+# Build
+make -j4
 ```
-</details>
 
-<details><summary>MacOS Premake</summary>
+**Output:** `build-webos-wsl/src/re3` (~7.5 MB)
 
-For MacOS using premake, proceed: [Building on MacOS](https://github.com/GTAmodding/re3/wiki/Building-on-MacOS)
+**Packaging for WebOS:**
+```bash
+./package_webos.sh
+```
 
-</details>
+> :information_source: Various webOS-specific settings can be found in `src/core/config.h` under `#ifdef WEBOS_TOUCHPAD`
 
-<details><summary>FreeBSD</summary>
+> :information_source: This port uses [librw](https://github.com/aap/librw/) (GL3 backend) for rendering, and custom SDL2 compatibility layers for webOS.
 
-For FreeBSD using premake, proceed: [Building on FreeBSD](https://github.com/GTAmodding/re3/wiki/Building-on-FreeBSD)
+## Contributing (WebOS Port)
 
-</details>
+This is a platform-specific port. Contributions welcome for:
 
-<details><summary>Windows</summary>
+- **Bug fixes** for webOS-specific issues (wrapped in `#ifdef WEBOS_TOUCHPAD`)
+- **Performance optimizations** for Adreno 220 GPU and older ARM hardware
+- **Shader fixes** for GLSL ES 1.00 compatibility
+- **Touch control improvements**
+- **Documentation** of webOS-specific quirks and fixes
 
-Assuming you have Visual Studio 2015/2017/2019:
-- Run one of the `premake-vsXXXX.cmd` variants on root folder.
-- Open build/re3.sln with Visual Studio and compile the solution.
+All webOS-specific code should be wrapped in preprocessor conditions (`#ifdef WEBOS_TOUCHPAD`).
 
-Microsoft recently discontinued its downloads of the DX9 SDK. You can download an archived version here: https://archive.org/details/dxsdk_jun10
-
-**If you choose OpenAL on Windows** You must read [Running OpenAL build on Windows](https://github.com/GTAmodding/re3/wiki/Running-OpenAL-build-on-Windows).
-</details>
-
-> :information_source: premake has an `--with-lto` option if you want the project to be compiled with Link Time Optimization.
-
-> :information_source: There are various settings in [config.h](https://github.com/Jai-JAP/re-GTA/tree/re3/src/core/config.h), you may want to take a look there.
-
-> :information_source: re3 uses completely homebrew RenderWare-replacement rendering engine; [librw](https://github.com/aap/librw/). librw comes as submodule of re3, but you also can use LIBRW enviorenment variable to specify path to your own librw.
-
-If you feel the need, you can also use CodeWarrior 7 to compile re3 using the supplied codewarrior/re3.mcp project - this requires the original RW33 libraries, and the DX8 SDK. The build is unstable compared to the MSVC builds though, and is mostly meant to serve as a reference.
-
-## Contributing
-As long as it's not linux/cross-platform skeleton/compatibility layer, all of the code on the repo that's not behind a preprocessor condition(like FIX_BUGS) are **completely** reversed code from original binaries.  
-
-We **don't** accept custom codes, as long as it's not wrapped via preprocessor conditions, or it's linux/cross-platform skeleton/compatibility layer.
-
-We accept only these kinds of PRs;
-
-- A new feature that exists in at least one of the GTAs (if it wasn't in III/VC then it doesn't have to be decompilation)  
-- Game, UI or UX bug fixes (if it's a fix to original code, it should be behind FIX_BUGS)
-- Platform-specific and/or unused code that's not been reversed yet
-- Makes reversed code more understandable/accurate, as in "which code would produce this assembly".
-- A new cross-platform skeleton/compatibility layer, or improvements to them
-- Translation fixes, for languages original game supported
-- Code that increase maintainability  
-
-We have a [Coding Style](https://github.com/Jai-JAP/re-GTA/blob/re3/CODING_STYLE.md) document that isn't followed or enforced very well.
-
-Do not use features from C++11 or later.
+See [CODING_STYLE.md](CODING_STYLE.md) for style guidelines. Avoid C++11 or later features.
 
 
 ## History
 
-re3 was started sometime in the spring of 2018,
-initially as a way to test reversed collision and physics code
-inside the game.
-This was done by replacing single functions of the game
-with their reversed counterparts using a dll.
+### Original re3 Project
+re3 was started in spring 2018 as a reverse engineering project for GTA III. After years of community effort, a standalone executable was achieved in April 2020. The project has since expanded to include Vice City (reVC) and Liberty City Stories (reLCS).
 
-After a bit of work the project lay dormant for about a year
-and was picked up again and pushed to github in May 2019.
-At the time I (aap) had reversed around 10k lines of code and estimated
-the final game to have around 200-250k.
-Others quickly joined the effort (Fire_Head, shfil, erorcun and Nick007J
-in time order, and Serge a bit later) and we made very quick progress
-throughout the summer of 2019
-after which the pace slowed down a bit.
+### WebOS Port (This Repository)
+The webOS port was started in December 2025, targeting the HP webOS TouchPad (2011). This port focuses on:
+- ARM architecture compatibility (Snapdragon APQ8060)
+- OpenGL ES 2.0 / GLSL ES 1.00 rendering
+- Touch-based controls for tablet interface
+- Low-end hardware optimization (1 GB RAM, Adreno 220 GPU)
 
-Due to everyone staying home during the start of the Corona pandemic
-everybody had a lot of time to work on re3 again and
-we finally got a standalone exe in April 2020 (around 180k lines by then).
+**Development Status:**
+- **Dec 27-31, 2025:** Initial port development, achieved proof-of-concept with partial functionality
+- **Current:** Working on animation system crash and 3D rendering issues
 
-After the initial excitement and fixing and polishing the code further,
-reVC was started in early May 2020 by starting from re3 code,
-not by starting from scratch replacing functions with a dll.
-After a few months of mostly steady progress we considered reVC
-finished in December.
-
-Since then we have started reLCS, which is currently work in progress.
+See [PROGRESS_DEC31_2025.md](../PROGRESS_DEC31_2025.md) for detailed development log.
 
 
 ## License
@@ -203,4 +216,29 @@ Since then we have started reLCS, which is currently work in progress.
 We don't feel like we're in a position to give this code a license.\
 The code should only be used for educational, documentation and modding purposes.\
 We do not encourage piracy or commercial use.\
-Please keep derivate work open source and give proper credit.
+Please keep derivative work open source and give proper credit.
+
+---
+
+## Credits
+
+### Original re3 Project
+- **re3 Team:** aap, Fire_Head, shfil, erorcun, Nick007J, Serge, and many contributors
+- **LibRW:** aap - RenderWare reimplementation
+
+### WebOS Port
+- **Port Developer:** Starkka15
+- **Reference Ports:** Vita port (TheOfficialFloW/Rinnegatamante) - ARM reference implementation
+- **Tools:** Claude AI - Debugging assistance and code analysis
+
+### Resources
+- Original re3: [GTAmodding/re3](https://github.com/GTAmodding/re3)
+- LibRW: [aap/librw](https://github.com/aap/librw)
+- Vita Port: [TheOfficialFloW/re3](https://github.com/TheOfficialFloW/re3)
+- webOS SDK: HP webOS SDK 3.0.5
+
+---
+
+**Repository:** https://github.com/Starkka15/re3-WebOS
+**Issues:** Please report webOS-specific issues in this repository's issue tracker
+**Documentation:** See [WEBOS-PORTING-STATUS.md](WEBOS-PORTING-STATUS.md) and [WEBOS_ISSUES_AND_FIXES.md](WEBOS_ISSUES_AND_FIXES.md) for technical details
