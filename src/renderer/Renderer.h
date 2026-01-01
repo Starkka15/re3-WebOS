@@ -8,7 +8,7 @@ class CEntity;
 #define LOD_DISTANCE 300.0f
 #endif
 #define FADE_DISTANCE 20.0f
-#define STREAM_DISTANCE 30.0f
+#define STREAM_DISTANCE 80.0f  // Increased from 30.0f - bridge sections need to load from further away
 
 #ifdef EXTRA_MODEL_FLAGS
 #define BACKFACE_CULLING_ON SetCullMode(rwCULLMODECULLBACK)

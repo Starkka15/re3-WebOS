@@ -645,10 +645,15 @@ CCullZone::DoStuffLeavingZone_OneBuilding(uint16 i)
 
 
 	if(i < NUMUNCOMPRESSED){
-		CPools::GetBuildingPool()->GetSlot(i)->bZoneCulled = false;
+		CBuilding *building = CPools::GetBuildingPool()->GetSlot(i);
+		if(building)  // webOS: Add null check to prevent crash with increased streaming
+			building->bZoneCulled = false;
 		bb = CCullZones::aPointersToBigBuildingsForBuildings[i];
-		if(bb != -1)
-			CPools::GetBuildingPool()->GetSlot(bb)->bZoneCulled = false;
+		if(bb != -1){
+			building = CPools::GetBuildingPool()->GetSlot(bb);
+			if(building)
+				building->bZoneCulled = false;
+		}
 	}else{
 		i -= NUMUNCOMPRESSED;
 		for(j = 0; j < 3; j++)
@@ -663,11 +668,17 @@ CCullZone::DoStuffLeavingZone_OneTreadableBoth(uint16 i)
 	int j;
 
 	if(i < NUMUNCOMPRESSED){
-		CPools::GetTreadablePool()->GetSlot(i)->bZoneCulled = false;
-		CPools::GetTreadablePool()->GetSlot(i)->bZoneCulled2 = false;
+		CTreadable *treadable = CPools::GetTreadablePool()->GetSlot(i);
+		if(treadable){  // webOS: Add null check to prevent crash with increased streaming
+			treadable->bZoneCulled = false;
+			treadable->bZoneCulled2 = false;
+		}
 		bb = CCullZones::aPointersToBigBuildingsForTreadables[i];
-		if(bb != -1)
-			CPools::GetBuildingPool()->GetSlot(bb)->bZoneCulled = false;
+		if(bb != -1){
+			CBuilding *building = CPools::GetBuildingPool()->GetSlot(bb);
+			if(building)
+				building->bZoneCulled = false;
+		}
 	}else{
 		i -= NUMUNCOMPRESSED;
 		for(j = 0; j < 3; j++)
@@ -695,10 +706,15 @@ CCullZone::DoStuffEnteringZone_OneBuilding(uint16 i)
 	int j;
 
 	if(i < NUMUNCOMPRESSED){
-		CPools::GetBuildingPool()->GetSlot(i)->bZoneCulled = true;
+		CBuilding *building = CPools::GetBuildingPool()->GetSlot(i);
+		if(building)  // webOS: Add null check to prevent crash with increased streaming
+			building->bZoneCulled = true;
 		bb = CCullZones::aPointersToBigBuildingsForBuildings[i];
-		if(bb != -1)
-			CPools::GetBuildingPool()->GetSlot(bb)->bZoneCulled = true;
+		if(bb != -1){
+			building = CPools::GetBuildingPool()->GetSlot(bb);
+			if(building)
+				building->bZoneCulled = true;
+		}
 	}else{
 		i -= NUMUNCOMPRESSED;
 		for(j = 0; j < 3; j++)
@@ -713,11 +729,17 @@ CCullZone::DoStuffEnteringZone_OneTreadablePlus10m(uint16 i)
 	int j;
 
 	if(i < NUMUNCOMPRESSED){
-		CPools::GetTreadablePool()->GetSlot(i)->bZoneCulled = true;
-		CPools::GetTreadablePool()->GetSlot(i)->bZoneCulled2 = true;
+		CTreadable *treadable = CPools::GetTreadablePool()->GetSlot(i);
+		if(treadable){  // webOS: Add null check to prevent crash with increased streaming
+			treadable->bZoneCulled = true;
+			treadable->bZoneCulled2 = true;
+		}
 		bb = CCullZones::aPointersToBigBuildingsForTreadables[i];
-		if(bb != -1)
-			CPools::GetBuildingPool()->GetSlot(bb)->bZoneCulled = true;
+		if(bb != -1){
+			CBuilding *building = CPools::GetBuildingPool()->GetSlot(bb);
+			if(building)
+				building->bZoneCulled = true;
+		}
 	}else{
 		i -= NUMUNCOMPRESSED;
 		for(j = 0; j < 3; j++)
@@ -732,10 +754,15 @@ CCullZone::DoStuffEnteringZone_OneTreadable(uint16 i)
 	int j;
 
 	if(i < NUMUNCOMPRESSED){
-		CPools::GetTreadablePool()->GetSlot(i)->bZoneCulled = true;
+		CTreadable *treadable = CPools::GetTreadablePool()->GetSlot(i);
+		if(treadable)  // webOS: Add null check to prevent crash with increased streaming
+			treadable->bZoneCulled = true;
 		bb = CCullZones::aPointersToBigBuildingsForTreadables[i];
-		if(bb != -1)
-			CPools::GetBuildingPool()->GetSlot(bb)->bZoneCulled = true;
+		if(bb != -1){
+			CBuilding *building = CPools::GetBuildingPool()->GetSlot(bb);
+			if(building)
+				building->bZoneCulled = true;
+		}
 	}else{
 		i -= NUMUNCOMPRESSED;
 		for(j = 0; j < 3; j++)

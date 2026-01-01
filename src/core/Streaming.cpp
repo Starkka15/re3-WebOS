@@ -1224,7 +1224,7 @@ CStreaming::RequestBigBuildings(eLevelName level)
 	int requestCount = 0;
 	// webOS: If in neutral zone (level=0), load from ALL levels but limit total
 	bool loadAllLevels = (level == LEVEL_GENERIC);
-	const int MAX_BUILDINGS_NEUTRAL = 50;  // Limit for neutral zones to prevent crash (testing lower)
+	const int MAX_BUILDINGS_NEUTRAL = 200;  // Increased from 50 to fix LOD streaming
 #endif
 	for(i = n; i >= 0; i--){
 		b = CPools::GetBuildingPool()->GetSlot(i);

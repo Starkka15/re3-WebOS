@@ -639,6 +639,9 @@ LoadSplash(const char *name)
 	RwTexDictionary *txd;
 	char filename[140];
 	RwTexture *tex = nil;
+#ifdef WEBOS_TOUCHPAD
+	FILE *log;
+#endif
 
 	if(name == nil)
 		return &splash;
@@ -652,7 +655,7 @@ LoadSplash(const char *name)
 
 	if(tex == nil){
 #ifdef WEBOS_TOUCHPAD
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		log = fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadSplash: tex is nil for '%s', loading TXD\n", name);
 			fflush(log); fclose(log);
