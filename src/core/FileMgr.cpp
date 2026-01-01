@@ -34,6 +34,20 @@ static myFILE myfiles[NUMFILES];
 #include <unistd.h>
 #define _getcwd getcwd
 
+char cur_dir[MAX_CURDIR_PATH] = "/media/internal/.gta3";
+char *getcwd(char *buf, size_t size) {
+    if (buf != NULL) {
+        strncpy(buf, cur_dir, size);
+    }
+    return cur_dir;
+int chdir(const char *path) {
+			if (strncmp(path, "/media/internal", 4) == 0) {
+			debug("absolute chdir: %s -> %s\n", cur_dir, path);
+			strcpy(cur_dir, path);
+		} else {
+			debug("relative path: %s -> %s/%s\n", cur_dir, cur_dir, path);
+			sprintf(cur_dir, "%s/%s", cur_dir, path);
+		}
 // Case-insensitivity on linux (from https://github.com/OneSadCookie/fcaseopen)
 void mychdir(char const *path)
 {
