@@ -412,6 +412,17 @@ FindPlayerCoors(void)
 		return TheCamera.GetPosition();
 #endif
 	CPlayerPed *ped = FindPlayerPed();
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Safety check - if player ped not initialized yet, return camera position
+	if(!ped) {
+		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		if(log) {
+			fprintf(log, "FindPlayerCoors: ped is NULL, returning camera position\n");
+			fclose(log);
+		}
+		return TheCamera.GetPosition();
+	}
+#endif
 	if(ped->InVehicle())
 		return ped->m_pMyVehicle->GetPosition();
 	else

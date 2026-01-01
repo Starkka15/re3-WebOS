@@ -25,10 +25,16 @@ class CCutsceneMgr
 public:
 	static CDirectory *ms_pCutsceneDir;
 	static uint32 ms_cutsceneLoadStatus;
+#ifdef WEBOS_TOUCHPAD
+	static uint32 ms_cutsceneInstanceCounter;  // Increments each cutscene start
+#endif
 
 	static void StartCutsceneProcessing() { ms_cutsceneProcessing = true; }
 	static bool IsRunning(void) { return ms_running; }
 	static bool HasLoaded(void) { return ms_loaded; }
+#ifdef WEBOS_TOUCHPAD
+	static uint32 GetCutsceneInstance(void) { return ms_cutsceneInstanceCounter; }
+#endif
 	static bool IsCutsceneProcessing(void) { return ms_cutsceneProcessing; }
 	static bool UseLodMultiplier(void) { return ms_useLodMultiplier; }
 	static CCutsceneObject* GetCutsceneObject(int id) { return ms_pCutsceneObjects[id]; }

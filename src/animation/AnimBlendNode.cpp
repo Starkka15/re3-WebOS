@@ -21,6 +21,12 @@ CAnimBlendNode::Update(CVector &trans, CQuaternion &rot, float weight)
 	trans = CVector(0.0f, 0.0f, 0.0f);
 	rot = CQuaternion(0.0f, 0.0f, 0.0f, 0.0f);
 
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(association == nil || sequence == nil)
+		return false;
+#endif
+
 	if(association->IsRunning()){
 		remainingTime -= association->timeStep;
 		if(remainingTime <= 0.0f)
@@ -49,6 +55,12 @@ bool
 CAnimBlendNode::NextKeyFrame(void)
 {
 	bool looped;
+
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(association == nil || sequence == nil)
+		return false;
+#endif
 
 	if(sequence->numFrames <= 1)
 		return false;
@@ -86,6 +98,12 @@ CAnimBlendNode::NextKeyFrame(void)
 bool
 CAnimBlendNode::FindKeyFrame(float t)
 {
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(association == nil || sequence == nil)
+		return false;
+#endif
+
 	if(sequence->numFrames < 1)
 		return false;
 
@@ -134,6 +152,12 @@ CAnimBlendNode::GetCurrentTranslation(CVector &trans, float weight)
 {
 	trans = CVector(0.0f, 0.0f, 0.0f);
 
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(association == nil || sequence == nil)
+		return;
+#endif
+
 	float blend = association->GetBlendAmount(weight);
 	if(blend > 0.0f){
 		KeyFrameTrans *kfA = (KeyFrameTrans*)sequence->GetKeyFrame(frameA);
@@ -150,6 +174,12 @@ void
 CAnimBlendNode::GetEndTranslation(CVector &trans, float weight)
 {
 	trans = CVector(0.0f, 0.0f, 0.0f);
+
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(association == nil || sequence == nil)
+		return;
+#endif
 
 	float blend = association->GetBlendAmount(weight);
 	if(blend > 0.0f){

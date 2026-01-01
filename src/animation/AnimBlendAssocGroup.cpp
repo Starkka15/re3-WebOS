@@ -62,6 +62,11 @@ CAnimBlendAssocGroup::CopyAnimation(uint32 id)
 	CAnimBlendAssociation *anim = GetAnimation(id);
 	if(anim == nil)
 		return nil;
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(anim->hierarchy == nil || anim->nodes == nil)
+		return nil;
+#endif
 	CAnimManager::UncompressAnimation(anim->hierarchy);
 	return new CAnimBlendAssociation(*anim);
 }
@@ -72,6 +77,11 @@ CAnimBlendAssocGroup::CopyAnimation(const char *name)
 	CAnimBlendAssociation *anim = GetAnimation(name);
 	if(anim == nil)
 		return nil;
+#ifdef WEBOS_TOUCHPAD
+	// NULL check to prevent crash after cutscene cleanup
+	if(anim->hierarchy == nil || anim->nodes == nil)
+		return nil;
+#endif
 	CAnimManager::UncompressAnimation(anim->hierarchy);
 	return new CAnimBlendAssociation(*anim);
 }

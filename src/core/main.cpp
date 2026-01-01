@@ -2014,6 +2014,18 @@ Idle(void *arg)
 		// This has to be done BEFORE RwCameraBeginUpdate
 		RwCameraSetFarClipPlane(Scene.camera, CTimeCycle::GetFarClip());
 		RwCameraSetFogDistance(Scene.camera, CTimeCycle::GetFogStart());
+#ifdef WEBOS_TOUCHPAD
+		static int farClipLogCount = 0;
+		if(farClipLogCount < 5) {
+			FILE* log = fopen("/media/internal/.gta3/debug.log", "a");
+			if(log) {
+				fprintf(log, "FarClip set to: %.2f, FogStart: %.2f\n",
+					CTimeCycle::GetFarClip(), CTimeCycle::GetFogStart());
+				fclose(log);
+			}
+			farClipLogCount++;
+		}
+#endif
 #endif
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED

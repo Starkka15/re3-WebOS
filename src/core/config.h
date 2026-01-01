@@ -140,10 +140,14 @@ enum Config {
 	NUM_EXPLOSIONS = 48,
 };
 
-// WebOS TouchPad memory pool overrides (reduce for limited RAM)
+// WebOS TouchPad memory pool overrides - PS2 levels (reduces memory pressure for texture streaming)
 #ifdef WEBOS_TOUCHPAD
+	// Use PS2 limits to reduce texture pop-in by freeing memory for texture streaming
 	#undef NUMPTRNODES
-	#define NUMPTRNODES 35000  // Increased from 30000 for extra buildings
+	#define NUMPTRNODES 26000  // PS2 level (reduced from 30000)
+
+	#undef NUMENTRYINFOS
+	#define NUMENTRYINFOS 3200  // PS2 level (reduced from 5400)
 
 	#undef NUMPEDS
 	#define NUMPEDS 90  // PS2 level (reduced from 140)
@@ -151,14 +155,15 @@ enum Config {
 	#undef NUMVEHICLES
 	#define NUMVEHICLES 70  // PS2 level (reduced from 110)
 
-	#undef MAXVEHICLESLOADED
-	#define MAXVEHICLESLOADED 70  // Mobile level (increased from 50) - matches 512MB streaming allocation
-
 	#undef NUMBUILDINGS
-	#define NUMBUILDINGS 10000  // Increased from 5500 to handle all GTA3 maps
+	#define NUMBUILDINGS 4915  // PS2 level (reduced from 5500)
 
+	#undef NUMDUMMIES
+	#define NUMDUMMIES 2368  // PS2 level (reduced from 2802)
+
+	// Keep visible entities moderate to balance performance and pop-in
 	#undef NUMVISIBLEENTITIES
-	#define NUMVISIBLEENTITIES 1500  // Reduced from 2000
+	#define NUMVISIBLEENTITIES 1500  // Moderate level (reduced from 2000)
 
 	#undef NUMCORONAS
 	#define NUMCORONAS 40  // Reduced from 56

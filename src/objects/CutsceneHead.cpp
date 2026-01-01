@@ -51,11 +51,24 @@ CCutsceneHead::CreateRwObject(void)
 	assert(RwObjectGetType(m_rwObject) == rpCLUMP);
 	atm = GetFirstAtomic((RpClump*)m_rwObject);
 	RpSkinAtomicSetHAnimHierarchy(atm, RpHAnimFrameGetHierarchy(GetFirstChild(RpClumpGetFrame((RpClump*)m_rwObject))));
+
+#ifdef WEBOS_TOUCHPAD
+	// Mark this head with the current cutscene instance
+	m_cutsceneInstance = CCutsceneMgr::GetCutsceneInstance();
+#endif
 }
 
 void
 CCutsceneHead::DeleteRwObject(void)
 {
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Clear hierarchy pointer to prevent dangling pointer crashes
+	if(m_rwObject) {
+		RpAtomic *atm = GetFirstAtomic((RpClump*)m_rwObject);
+		if(atm)
+			RpSkinAtomicSetHAnimHierarchy(atm, nil);
+	}
+#endif
 	CEntity::DeleteRwObject();
 }
 
@@ -64,6 +77,18 @@ CCutsceneHead::ProcessControl(void)
 {
 	RpAtomic *atm;
 	RpHAnimHierarchy *hier;
+
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Safety check - don't process if object has no RW data
+	if(!m_rwObject) {
+		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		if(log) {
+			fprintf(log, "CCutsceneHead::ProcessControl: m_rwObject is NULL, skipping\n");
+			fclose(log);
+		}
+		return;
+	}
+#endif
 
 	// android/xbox calls is at the end
 	CPhysical::ProcessControl();
@@ -90,11 +115,40 @@ CCutsceneHead::ProcessControl(void)
 	assert(RwObjectGetType(m_rwObject) == rpCLUMP);
 	atm = GetFirstAtomic((RpClump*)m_rwObject);
 	hier = RpSkinAtomicGetHAnimHierarchy(atm);
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Only update animation during active cutscene to prevent accessing freed animation data
+	bool isRunning = CCutsceneMgr::IsRunning();
+	uint32 currentInstance = CCutsceneMgr::GetCutsceneInstance();
+	bool instanceMatch = (m_cutsceneInstance == currentInstance);
+
+	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	if(log) {
+		if(!isRunning || !hier || !instanceMatch) {
+			fprintf(log, "CCutsceneHead::ProcessControl: SKIP (run=%d, hier=%p, inst=%d/%d)\n",
+				isRunning, hier, m_cutsceneInstance, currentInstance);
+			fclose(log);
+			return;  // Skip animation update
+		} else {
+			// Safe: cutscene running AND hier valid AND instance matches
+			fprintf(log, "CCutsceneHead::ProcessControl: OK (run=%d, hier=%p, inst=%d/%d)\n",
+				isRunning, hier, m_cutsceneInstance, currentInstance);
+			fclose(log);
+		}
+	} else {
+		// Log file couldn't open, but still do safety check
+		if(!isRunning || !hier || !instanceMatch)
+			return;
+	}
+	// If we get here: cutscene running AND hier valid AND instance matches
+#else
 #ifdef GTA_PS2_STUFF
 	// PS2 only plays anims in cutscene, PC always plays anims
 	if(!lastLoadedSKA || CCutsceneMgr::IsRunning())
 #endif
-	RpHAnimHierarchyAddAnimTime(hier, CTimer::GetTimeStepNonClippedInSeconds());
+	// NULL check: hierarchy might not be initialized if animation file was missing
+	if(hier)
+#endif
+		RpHAnimHierarchyAddAnimTime(hier, CTimer::GetTimeStepNonClippedInSeconds());
 }
 
 void
@@ -128,7 +182,15 @@ CCutsceneHead::Render(void)
 
 	assert(RwObjectGetType(m_rwObject) == rpCLUMP);
 	atm = GetFirstAtomic((RpClump*)m_rwObject);
-	RpHAnimHierarchyUpdateMatrices(RpSkinAtomicGetHAnimHierarchy(atm));
+	RpHAnimHierarchy *hier = RpSkinAtomicGetHAnimHierarchy(atm);
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Only update matrices during active cutscene to prevent accessing freed animation data
+	if(CCutsceneMgr::IsRunning() && hier)
+#else
+	// NULL check: hierarchy might not be initialized if animation file was missing
+	if(hier)
+#endif
+		RpHAnimHierarchyUpdateMatrices(hier);
 
 	CObject::Render();
 }

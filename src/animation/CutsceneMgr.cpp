@@ -130,6 +130,9 @@ CAnimBlendAssocGroup CCutsceneMgr::ms_cutsceneAssociations;
 CVector CCutsceneMgr::ms_cutsceneOffset;
 float CCutsceneMgr::ms_cutsceneTimer;
 uint32 CCutsceneMgr::ms_cutsceneLoadStatus;
+#ifdef WEBOS_TOUCHPAD
+uint32 CCutsceneMgr::ms_cutsceneInstanceCounter = 0;
+#endif
 
 RpAtomic *
 CalculateBoundingSphereRadiusCB(RpAtomic *atomic, void *data)
@@ -259,9 +262,12 @@ void
 CCutsceneMgr::SetupCutsceneToStart(void)
 {
 #ifdef WEBOS_TOUCHPAD
+	// Increment cutscene instance counter to invalidate objects from previous cutscenes
+	ms_cutsceneInstanceCounter++;
 	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
-		fprintf(log, "SetupCutsceneToStart: START (name='%s', numObjs=%d)\n", ms_cutsceneName, ms_numCutsceneObjs);
+		fprintf(log, "SetupCutsceneToStart: START (name='%s', numObjs=%d, instance=%d)\n",
+			ms_cutsceneName, ms_numCutsceneObjs, ms_cutsceneInstanceCounter);
 		fflush(log); fclose(log);
 	}
 #endif
@@ -315,6 +321,11 @@ CCutsceneMgr::SetCutsceneAnim(const char *animName, CObject *pObject)
 	RpAnimBlendClumpRemoveAllAssociations((RpClump*)pObject->m_rwObject);
 
 	pNewAnim = ms_cutsceneAssociations.CopyAnimation(animName);
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Check if animation copy succeeded (may fail after cutscene cleanup)
+	if(pNewAnim == nil)
+		return;
+#endif
 	pNewAnim->SetCurrentTime(0.0f);
 	pNewAnim->flags |= ASSOC_HAS_TRANSLATION;
 	pNewAnim->flags &= ~ASSOC_RUNNING;
@@ -392,6 +403,11 @@ CCutsceneMgr::DeleteCutsceneData(void)
 
 	if (ms_animLoaded)
 		CAnimManager::RemoveLastAnimFile();
+
+#ifdef WEBOS_TOUCHPAD
+	// WEBOS: Destroy cutscene associations to prevent accessing freed animation data
+	ms_cutsceneAssociations.DestroyAssociations();
+#endif
 
 	ms_animLoaded = false;
 	TheCamera.RestoreWithJumpCut();

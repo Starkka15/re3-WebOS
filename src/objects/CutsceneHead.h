@@ -12,6 +12,9 @@ public:
 	int32 unk2;
 	int32 bIsSkinned;
 #endif
+#ifdef WEBOS_TOUCHPAD
+	uint32 m_cutsceneInstance;  // Tracks which cutscene this head belongs to
+#endif
 
 	CCutsceneHead(CObject *obj);
 
