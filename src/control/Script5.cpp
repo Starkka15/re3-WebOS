@@ -2462,6 +2462,7 @@ bool CTheScripts::IsPedStopped(CPed* pPed)
 
 bool CTheScripts::IsPlayerStopped(CPlayerInfo* pPlayer)
 {
+	if (!pPlayer || !pPlayer->m_pPed) return true;  // Treat as "stopped" if player doesn't exist yet
 	CPed* pPed = pPlayer->m_pPed;
 	if (pPed->bInVehicle)
 		return IsVehicleStopped(pPed->m_pMyVehicle);

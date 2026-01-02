@@ -1159,8 +1159,12 @@ void re3_assert(const char *expr, const char *filename, unsigned int lineno, con
 
 	abort();
 #else
-	// TODO
-	printf("\nRE3 ASSERT FAILED\n\tFile: %s\n\tLine: %d\n\tFunction: %s\n\tExpression: %s\n",filename,lineno,func,expr);
+	// TODO - with NULL safety for webOS
+	printf("\nRE3 ASSERT FAILED\n\tFile: %s\n\tLine: %d\n\tFunction: %s\n\tExpression: %s\n",
+		filename ? filename : "(null)",
+		lineno,
+		func ? func : "(null)",
+		expr ? expr : "(null)");
 	assert(false);
 #endif
 }
