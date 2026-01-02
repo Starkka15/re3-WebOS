@@ -135,7 +135,7 @@ size_t getAvailableMemory()
  */
 RwBool psInitialize(void)
 {
-    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
     if (log) { fprintf(log, "psInitialize() called\n"); fflush(log); }
 
     debug("Initializing WebOS platform...\n");
@@ -357,7 +357,7 @@ void psCameraShowRaster(RwCamera *camera)
         GLint viewport[4];
         glGetIntegerv(GL_VIEWPORT, viewport);
 
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) {
             fprintf(log, "psCameraShowRaster: GL_VIEWPORT = [%d, %d, %d, %d]\n",
                 viewport[0], viewport[1], viewport[2], viewport[3]);
@@ -433,14 +433,14 @@ void HandleSDLEvents()
     static int eventCount = 0;
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "HandleSDLEvents: First call, about to declare event\n"); fflush(log); fclose(log); }
     }
 
     SDL_Event event;
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "HandleSDLEvents: Event declared, about to call SDL_PollEvent\n"); fflush(log); fclose(log); }
     }
 
@@ -448,7 +448,7 @@ void HandleSDLEvents()
         // Log first 200 events + ALL mouse/joystick button events
         if (eventCount < 200 || event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEBUTTONUP ||
             event.type == SDL_JOYBUTTONDOWN || event.type == SDL_JOYBUTTONUP) {
-            FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+            FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
             if (log) {
                 fprintf(log, "HandleSDLEvents: Event #%d, type=%d ", eventCount, event.type);
                 switch(event.type) {
@@ -475,7 +475,7 @@ void HandleSDLEvents()
         }
 
         if (firstCall) {
-            FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+            FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
             if (log) { fprintf(log, "HandleSDLEvents: SDL_PollEvent returned event, type=%d\n", event.type); fflush(log); fclose(log); }
         }
 
@@ -519,7 +519,7 @@ void HandleSDLEvents()
                         if (touchActive) {
                             if (currentTime - lastEventTime > 150) {
                                 // No events for 150ms - touch released
-                                FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                                FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                                 if (log) {
                                     fprintf(log, "JOYSTICK: Timeout triggered! currentTime=%u, lastEventTime=%u, diff=%u ms → Sending MOUSEBUTTONUP\n",
                                         currentTime, lastEventTime, currentTime - lastEventTime);
@@ -559,7 +559,7 @@ void HandleSDLEvents()
                         int deltaY = abs(axisY - restingY);
 
                         if (!touchActive && (deltaX > 2000 || deltaY > 2000)) {
-                            FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                            FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                             if (log) {
                                 fprintf(log, "JOYSTICK: Touch detected! axisX=%d, axisY=%d, screen=(%d,%d), deltaX=%d, deltaY=%d → Sending MOUSEBUTTONDOWN\n",
                                     axisX, axisY, screenX, screenY, deltaX, deltaY);
@@ -604,7 +604,7 @@ void HandleSDLEvents()
 
             case SDL_VIDEOEXPOSE:
                 if (firstCall) {
-                    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                     if (log) { fprintf(log, "HandleSDLEvents: Got SDL_VIDEOEXPOSE, calling RsEventHandler(rsCAMERASIZE)\n"); fflush(log); fclose(log); }
                 }
                 // Create proper RwRect structure (not just a pointer to maximumWidth!)
@@ -615,13 +615,13 @@ void HandleSDLEvents()
                 r.h = RsGlobal.maximumHeight;
                 if (RsEventHandler(rsCAMERASIZE, &r) == rsEVENTERROR) {
                     if (firstCall) {
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "HandleSDLEvents: rsCAMERASIZE returned ERROR\n"); fflush(log); fclose(log); }
                     }
                     return;
                 }
                 if (firstCall) {
-                    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                     if (log) { fprintf(log, "HandleSDLEvents: rsCAMERASIZE succeeded\n"); fflush(log); fclose(log); }
                 }
                 break;
@@ -629,7 +629,7 @@ void HandleSDLEvents()
     }
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "HandleSDLEvents: Completed successfully (no more events)\n"); fflush(log); fclose(log); }
         firstCall = false;
     }
@@ -643,7 +643,7 @@ RsEventStatus psMainLoop()
     static bool firstCall = true;
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "psMainLoop: First call - about to handle SDL events\n"); fflush(log); fclose(log); }
     }
 
@@ -651,7 +651,7 @@ RsEventStatus psMainLoop()
     HandleSDLEvents();
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "psMainLoop: HandleSDLEvents() succeeded\n"); fflush(log); fclose(log); }
     }
 
@@ -662,7 +662,7 @@ RsEventStatus psMainLoop()
     PDL_CallJS("update", NULL, 0);
 
     if (firstCall) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) { fprintf(log, "psMainLoop: PDL_CallJS() succeeded, about to return\n"); fflush(log); fclose(log); }
         firstCall = false;
     }
@@ -941,7 +941,7 @@ int main(int argc, char *argv[])
                     gGameState = GS_INIT_FRONTEND;
 #ifdef WEBOS_TOUCHPAD
                     if (loopCount < 3) {
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "GS_INIT_ONCE completed, transitioning to GS_INIT_FRONTEND\n"); fflush(log); fclose(log); }
                     }
 #endif
@@ -956,7 +956,7 @@ int main(int argc, char *argv[])
                     gGameState = GS_FRONTEND;
 #ifdef WEBOS_TOUCHPAD
                     if (loopCount < 3) {
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "GS_INIT_FRONTEND completed, m_bGameNotLoaded=true, transitioning to GS_FRONTEND\n"); fflush(log); fclose(log); }
                     }
 #endif
@@ -971,7 +971,7 @@ int main(int argc, char *argv[])
                     if (!FrontEndMenuManager.m_bMenuActive || FrontEndMenuManager.m_bWantToLoad) {
                         gGameState = GS_INIT_PLAYING_GAME;
 #ifdef WEBOS_TOUCHPAD
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "User started game, transitioning to GS_INIT_PLAYING_GAME\n"); fflush(log); fclose(log); }
 #endif
                     }
@@ -994,7 +994,7 @@ int main(int argc, char *argv[])
                     FrontEndMenuManager.m_bGameNotLoaded = false;
                     gGameState = GS_PLAYING_GAME;
 #ifdef WEBOS_TOUCHPAD
-                    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                     if (log) { fprintf(log, "GS_INIT_PLAYING_GAME: InitialiseGame() called, transitioning to GS_PLAYING_GAME\n"); fflush(log); fclose(log); }
 #endif
                     break;
@@ -1005,7 +1005,7 @@ int main(int argc, char *argv[])
 #ifdef WEBOS_TOUCHPAD
                     static int playingFrameCount = 0;
                     if (playingFrameCount < 5) {
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "GS_PLAYING_GAME: Frame %d, RwInitialised=%d, about to call rsIDLE\n", playingFrameCount, RwInitialised); fflush(log); fclose(log); }
                     }
 #endif
@@ -1013,7 +1013,7 @@ int main(int argc, char *argv[])
                         RsEventHandler(rsIDLE, (void *)TRUE);
 #ifdef WEBOS_TOUCHPAD
                     if (playingFrameCount < 5) {
-                        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                         if (log) { fprintf(log, "GS_PLAYING_GAME: Frame %d, rsIDLE completed\n", playingFrameCount); fflush(log); fclose(log); }
                         playingFrameCount++;
                     }

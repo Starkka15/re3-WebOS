@@ -1948,7 +1948,7 @@ int8 CRunningScript::ProcessCommands700To799(int32 command)
 	case COMMAND_CLEAR_CUTSCENE:
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "COMMAND_CLEAR_CUTSCENE: About to call DeleteCutsceneData\n");
 				fflush(log); fclose(log);
@@ -1958,7 +1958,7 @@ int8 CRunningScript::ProcessCommands700To799(int32 command)
 		CCutsceneMgr::DeleteCutsceneData();
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "COMMAND_CLEAR_CUTSCENE: DeleteCutsceneData returned successfully\n");
 				fflush(log); fclose(log);

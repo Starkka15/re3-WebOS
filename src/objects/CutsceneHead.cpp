@@ -81,7 +81,7 @@ CCutsceneHead::ProcessControl(void)
 #ifdef WEBOS_TOUCHPAD
 	// WEBOS: Safety check - don't process if object has no RW data
 	if(!m_rwObject) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if(log) {
 			fprintf(log, "CCutsceneHead::ProcessControl: m_rwObject is NULL, skipping\n");
 			fclose(log);
@@ -121,7 +121,7 @@ CCutsceneHead::ProcessControl(void)
 	uint32 currentInstance = CCutsceneMgr::GetCutsceneInstance();
 	bool instanceMatch = (m_cutsceneInstance == currentInstance);
 
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if(log) {
 		if(!isRunning || !hier || !instanceMatch) {
 			fprintf(log, "CCutsceneHead::ProcessControl: SKIP (run=%d, hier=%p, inst=%d/%d)\n",

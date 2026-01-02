@@ -49,7 +49,7 @@ void
 CWorld::Initialise()
 {
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CWorld::Initialise: Starting\n"); fflush(log); fclose(log); }
 #endif
 #if GTA_VERSION <= GTA3_PS2_160
@@ -78,7 +78,7 @@ CWorld::Add(CEntity *ent)
 
 	// CRITICAL: Validate entity pointer before using
 	if (ent == NULL) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "FATAL: CWorld::Add called with NULL entity! (count=%d)\n", addCount);
 			fflush(log); fclose(log);
@@ -89,7 +89,7 @@ CWorld::Add(CEntity *ent)
 	// DIAGNOSTIC: Log but DON'T reject NULL m_rwObject
 	// (Testing if geometry loads after entity creation)
 	if (ent->m_rwObject == NULL && addCount < 10) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "WARNING: Entity #%d has NULL m_rwObject at Add! IsPed=%d IsVehicle=%d\n",
 				addCount, ent->IsPed(), ent->IsVehicle());
@@ -100,7 +100,7 @@ CWorld::Add(CEntity *ent)
 
 	// Log first 50 entities (during initial gameplay)
 	if (addCount < 50) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CWorld::Add #%d: rwObject=%p IsPed=%d IsVehicle=%d IsBig=%d\n",
 				addCount, ent->m_rwObject, ent->IsPed(), ent->IsVehicle(), ent->bIsBIGBuilding);
@@ -119,7 +119,7 @@ CWorld::Add(CEntity *ent)
 
 #ifdef WEBOS_TOUCHPAD
 	if(addCount <= 50) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CWorld::Add: After ent->Add() or InsertItem\n"); fflush(log); fclose(log); }
 	}
 #endif

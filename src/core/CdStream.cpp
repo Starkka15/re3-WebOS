@@ -171,7 +171,7 @@ GetGTA3ImgSize(void)
 {
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: START, gImgFiles[0]=%p\n", gImgFiles[0]);
 			fflush(log);
@@ -184,7 +184,7 @@ GetGTA3ImgSize(void)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: About to call GetFileSize()\n");
 			fflush(log);
@@ -197,7 +197,7 @@ GetGTA3ImgSize(void)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: GetFileSize() returned %u\n", size);
 			fflush(log);

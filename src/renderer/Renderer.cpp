@@ -189,7 +189,7 @@ CRenderer::RenderOneNonRoad(CEntity *e)
 	if (e == NULL || e->m_rwObject == NULL) {
 		static int skipCount = 0;
 		if (skipCount < 10) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "RenderOneNonRoad: Skipping entity with NULL geometry (count=%d)\n", skipCount);
 				fflush(log); fclose(log);
@@ -348,7 +348,7 @@ CRenderer::RenderEverythingBarRoads(void)
 	static int renderCallCount = 0;
 	static bool logged = false;
 	if (renderCallCount < 100 && !logged) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "RenderEverythingBarRoads: About to render %d entities\n", ms_nNoOfVisibleEntities);
 			fflush(log); fclose(log);
@@ -363,7 +363,7 @@ CRenderer::RenderEverythingBarRoads(void)
 #ifdef WEBOS_TOUCHPAD
 		// CRITICAL: Validate entity pointer before using
 		if (e == NULL) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "FATAL: NULL entity in render list at index %d!\n", i);
 				fflush(log); fclose(log);
@@ -373,7 +373,7 @@ CRenderer::RenderEverythingBarRoads(void)
 
 		// CRITICAL: Validate m_rwObject pointer before rendering
 		if (e->m_rwObject == NULL) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "ERROR: Entity has NULL m_rwObject at render! IsPed=%d IsVehicle=%d Index=%d\n",
 					e->IsPed(), e->IsVehicle(), i);
@@ -384,7 +384,7 @@ CRenderer::RenderEverythingBarRoads(void)
 
 		// Log first entity being rendered
 		if (renderCallCount <= 10 && i == 0) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "Rendering entity #%d: rwObject=%p IsPed=%d IsVehicle=%d\n",
 					i, e->m_rwObject, e->IsPed(), e->IsVehicle());
@@ -1112,7 +1112,7 @@ CRenderer::ConstructRenderList(void)
 #ifdef WEBOS_TOUCHPAD
 	static int renderListCount = 0;
 	if (renderListCount < 100) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "ConstructRenderList #%d: Found %d visible entities, %d invisible\n",
 				renderListCount, ms_nNoOfVisibleEntities, ms_nNoOfInVisibleEntities);

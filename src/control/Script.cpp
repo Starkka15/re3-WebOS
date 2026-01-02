@@ -784,7 +784,7 @@ void CRunningScript::Process()
 #ifdef WEBOS_TOUCHPAD
 		static int loopLogCount = 0;
 		if(loopLogCount < 5) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "Script loop: About to enter while(!ProcessOneCommand()) loop\n");
 				fflush(log); fclose(log);
@@ -794,7 +794,7 @@ void CRunningScript::Process()
 		while (!ProcessOneCommand()) {
 #ifdef WEBOS_TOUCHPAD
 			if(loopLogCount < 5) {
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					fprintf(log, "Script loop: ProcessOneCommand returned 0, looping again\n");
 					fflush(log); fclose(log);
@@ -809,7 +809,7 @@ void CRunningScript::Process()
 		// This was logging hundreds of times per frame - causing 1024 FD limit to be hit
 #if 0
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "Script loop: ProcessOneCommand returned non-zero, exiting loop\n");
 				fflush(log); fclose(log);
@@ -837,7 +837,7 @@ int8 CRunningScript::ProcessOneCommand()
 #ifdef WEBOS_TOUCHPAD
 	static int cmdLogCount = 0;
 	if(cmdLogCount < 10) {  // Only log first 10 commands after cutscene
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "ProcessOneCommand: START (m_nIp=%d, CommandsExecuted=%d)\n",
 				m_nIp, CTheScripts::CommandsExecuted);
@@ -850,7 +850,7 @@ int8 CRunningScript::ProcessOneCommand()
 	int32 command = (uint16)CTheScripts::Read2BytesFromScript(&m_nIp);
 #ifdef WEBOS_TOUCHPAD
 	if(cmdLogCount < 10) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "ProcessOneCommand: Read command=%d (0x%X), m_nIp now=%d\n",
 				command, command, m_nIp);

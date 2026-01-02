@@ -131,7 +131,7 @@ CTxdStore::LoadTxd(int slot, RwStream *stream)
 	TxdDef *def = GetSlot(slot);
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadTxd(stream): ENTRY slot=%d, stream=%p\n", slot, stream); fflush(log); fclose(log); }
 #endif
 
@@ -163,7 +163,7 @@ CTxdStore::LoadTxd(int slot, const char *filename)
 
 	ret = false;
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadTxd: Attempting to load '%s'\n", filename); fflush(log); }
 #endif
 	_rwD3D8TexDictionaryEnableRasterFormatConversion(true);

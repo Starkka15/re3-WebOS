@@ -41,7 +41,7 @@ RwTextureGtaStreamRead(RwStream *stream)
 	RwTexture *tex;
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "RwTextureGtaStreamRead: Starting...\n"); fflush(log); }
 #endif
 
@@ -104,7 +104,7 @@ RwTexDictionaryGtaStreamRead(RwStream *stream)
 	RwTexture *tex;
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "RwTexDictionaryGtaStreamRead: Starting...\n"); fflush(log); }
 #endif
 

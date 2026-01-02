@@ -415,7 +415,7 @@ FindPlayerCoors(void)
 #ifdef WEBOS_TOUCHPAD
 	// WEBOS: Safety check - if player ped not initialized yet, return camera position
 	if(!ped) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if(log) {
 			fprintf(log, "FindPlayerCoors: ped is NULL, returning camera position\n");
 			fclose(log);

@@ -172,7 +172,7 @@ add_providers()
 
 #ifdef WEBOS_TOUCHPAD
 	// WebOS OpenAL 1.1 doesn't have ALDeviceList - manually add default provider
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "[add_providers] WebOS: Adding default OpenAL provider\n"); fflush(log); fclose(log); }
 
 	providers[0].id = NULL; // NULL = default device
@@ -939,7 +939,7 @@ cSampleManager::Initialise(void)
 		}
 #else
 		// WebOS: Log available extensions but don't require AL_SOFT_loop_points
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "[SampleManager] OpenAL Extensions: %s\n", ext);
 			if (strstr(ext,"AL_SOFT_loop_points") == NULL) {

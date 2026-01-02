@@ -116,7 +116,7 @@ CSprite2d::SetRenderState(void)
 #ifdef WEBOS_TOUCHPAD
 	static int drawCount = 0;
 	if(drawCount++ % 100 == 0) {  // Log every 100th call to avoid spam
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if(log) {
 			RwRaster *raster = m_pTexture ? RwTextureGetRaster(m_pTexture) : nil;
 			fprintf(log, "CSprite2d::SetRenderState: m_pTexture=%p, raster=%p\n", m_pTexture, raster);

@@ -264,7 +264,7 @@ CCutsceneMgr::SetupCutsceneToStart(void)
 #ifdef WEBOS_TOUCHPAD
 	// Increment cutscene instance counter to invalidate objects from previous cutscenes
 	ms_cutsceneInstanceCounter++;
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "SetupCutsceneToStart: START (name='%s', numObjs=%d, instance=%d)\n",
 			ms_cutsceneName, ms_numCutsceneObjs, ms_cutsceneInstanceCounter);
@@ -379,7 +379,7 @@ CCutsceneMgr::DeleteCutsceneData(void)
 {
 #ifdef WEBOS_TOUCHPAD
 	// WEBOS: Minimal logging to avoid stack corruption from excessive FILE* operations
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "DeleteCutsceneData: START (name='%s', numObjs=%d)\n",
 			ms_cutsceneName, ms_numCutsceneObjs);
@@ -451,7 +451,7 @@ CCutsceneMgr::Update(void)
 	static int updateCount = 0;
 	static int lastLoadStatus = -1;
 	if(lastLoadStatus != ms_cutsceneLoadStatus) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CCutsceneMgr::Update: LoadStatus changed %d -> %d (name='%s', running=%d)\n",
 				lastLoadStatus, ms_cutsceneLoadStatus, ms_cutsceneName, ms_running);
@@ -466,7 +466,7 @@ CCutsceneMgr::Update(void)
 	case CUTSCENE_LOADING_AUDIO:
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "CCutsceneMgr::Update: About to call SetupCutsceneToStart (name='%s')\n", ms_cutsceneName);
 				fflush(log); fclose(log);

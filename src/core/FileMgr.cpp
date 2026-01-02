@@ -256,7 +256,7 @@ CFileMgr::SetDir(const char *dir)
 		if(ms_dirName[i] == '\\')
 			ms_dirName[i] = '/';
 	}
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "CFileMgr::SetDir: dir='%s', ms_rootDirName='%s', final ms_dirName='%s' (converted)\n",
 			dir, ms_rootDirName, ms_dirName);

@@ -305,7 +305,7 @@ void _rwD3D8TexDictionaryEnableRasterFormatConversion(bool enable) { }
 RwBool rwNativeTextureHackRead(RwStream *stream, RwTexture **tex, RwInt32 size)
 {
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "rwNativeTextureHackRead: START, stream=%p, size=%d\n", stream, size); fflush(log); fclose(log); }
 #endif
 

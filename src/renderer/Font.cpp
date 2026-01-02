@@ -291,7 +291,7 @@ CFont::Initialise(void)
 	int slot;
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CFont::Initialise started\n"); fflush(log); }
 #endif
 
@@ -517,7 +517,7 @@ CFont::Shutdown(void)
 void
 CFont::InitPerFrame(void)
 {
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CFont::InitPerFrame: About to call GetBank for Sprite[0]\n"); fflush(log); fclose(log); }
 
 	Details.bank = CSprite2d::GetBank(30, Sprite[0].m_pTexture);

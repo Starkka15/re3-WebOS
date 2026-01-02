@@ -29,7 +29,7 @@ CClock::Initialise(uint32 scale)
 	ms_nLastClockTick = CTimer::GetTimeInMilliseconds();
 	ms_bClockHasBeenStored = false;
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CClock::Initialise: scale=%u, ms_nMillisecondsPerGameMinute=%u\n", scale, ms_nMillisecondsPerGameMinute); fflush(log); fclose(log); }
 #endif
 	debug("CClock ready\n");
@@ -41,7 +41,7 @@ CClock::Update(void)
 #ifdef WEBOS_TOUCHPAD
 	// Prevent division by zero
 	if (ms_nMillisecondsPerGameMinute == 0) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CClock::Update: ERROR - ms_nMillisecondsPerGameMinute is 0! Setting to 1000.\n");
 			fflush(log);

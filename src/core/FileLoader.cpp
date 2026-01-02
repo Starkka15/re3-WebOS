@@ -54,7 +54,7 @@ CFileLoader::LoadLevel(const char *filename)
 	char txdname[64];
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CFileLoader::LoadLevel: Starting, filename='%s'\n", filename); fflush(log); fclose(log); }
 #endif
 
@@ -1016,7 +1016,7 @@ CFileLoader::LoadObjectTypes(const char *filename)
 	debug("Loading object types from %s...\n", filename);
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadObjectTypes: Opening file '%s'\n", filename); fflush(log); fclose(log); }
 #endif
 	fd = CFileMgr::OpenFile(filename, "rb");
@@ -1414,7 +1414,7 @@ CFileLoader::LoadPedObject(const char *line)
 	int animGroupId;
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadPedObject: Parsing line\n"); fflush(log); fclose(log); }
 #endif
 
@@ -1593,7 +1593,7 @@ CFileLoader::LoadScene(const char *filename)
 	debug("Creating objects from %s...\n", filename);
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadScene: Opening '%s'\n", filename); fflush(log); fclose(log); }
 #endif
 	fd = CFileMgr::OpenFile(filename, "rb");
@@ -1693,7 +1693,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 	static int instanceCount = 0;
 	// Log first 20 IPL instances in detail
 	if(instanceCount < 20) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadObjectInstance #%d: Starting to parse line\n", instanceCount);
 			fflush(log); fclose(log);
@@ -1717,7 +1717,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 #ifdef WEBOS_TOUCHPAD
 	// Log model info for first 20 instances
 	if(instanceCount <= 20) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadObjectInstance #%d: ModelID=%d Name='%s' Position=(%.1f,%.1f,%.1f)\n",
 				instanceCount, id, name, trans.x, trans.y, trans.z);
@@ -1731,14 +1731,14 @@ CFileLoader::LoadObjectInstance(const char *line)
 
 #ifdef WEBOS_TOUCHPAD
 	if((instanceCount % 100) == 0) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "LoadObjectInstance: About to RwMatrixCreate for instance %d\n", instanceCount); fflush(log); fclose(log); }
 	}
 #endif
 	xform = RwMatrixCreate();
 #ifdef WEBOS_TOUCHPAD
 	if(!xform) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadObjectInstance: FATAL - RwMatrixCreate failed (out of memory)! Instance %d\n", instanceCount);
 			fflush(log);
@@ -1747,7 +1747,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 		return;
 	}
 	if((instanceCount % 100) == 0) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "LoadObjectInstance: Matrix created, about to rotate\n"); fflush(log); fclose(log); }
 	}
 #endif
@@ -1757,7 +1757,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 	if(mi->GetObjectID() == -1){
 #ifdef WEBOS_TOUCHPAD
 		if((instanceCount % 100) == 0) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				int buildingUsed = CPools::GetBuildingPool()->GetNoOfUsedSpaces();
 				int buildingSize = CPools::GetBuildingPool()->GetSize();
@@ -1777,7 +1777,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 			entity = new CBuilding;
 #ifdef WEBOS_TOUCHPAD
 		if(!entity) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance: FATAL - Entity allocation failed (pool full)! Instance %d, IsPathObject=%d\n",
 					instanceCount, ThePaths.IsPathObject(id));
@@ -1788,7 +1788,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 		}
 		// Log entity creation for first 20 instances
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: Entity created (%s), m_rwObject=%p (before SetModelIndexNoCreate)\n",
 					instanceCount, ThePaths.IsPathObject(id) ? "CTreadable" : "CBuilding", entity->m_rwObject);
@@ -1810,7 +1810,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 #ifdef WEBOS_TOUCHPAD
 		// Log before CWorld::Add for first 20 instances
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: After SetModelIndexNoCreate, m_rwObject=%p (before CWorld::Add)\n",
 					instanceCount, entity->m_rwObject);
@@ -1822,7 +1822,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 #ifdef WEBOS_TOUCHPAD
 		// Log after CWorld::Add for first 20 instances
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: After CWorld::Add, m_rwObject=%p\n",
 					instanceCount, entity->m_rwObject);
@@ -1834,7 +1834,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 		entity = new CDummyObject;
 #ifdef WEBOS_TOUCHPAD
 		if(!entity) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance: FATAL - CDummyObject allocation failed (pool full)! Instance %d\n", instanceCount);
 				fflush(log);
@@ -1845,7 +1845,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 		}
 		// Log CDummyObject creation for first 20 instances
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: CDummyObject created, m_rwObject=%p (before SetModelIndexNoCreate)\n",
 					instanceCount, entity->m_rwObject);
@@ -1858,7 +1858,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 #ifdef WEBOS_TOUCHPAD
 		// Log before CWorld::Add for CDummyObject
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: CDummyObject after SetModelIndexNoCreate, m_rwObject=%p (before CWorld::Add)\n",
 					instanceCount, entity->m_rwObject);
@@ -1870,7 +1870,7 @@ CFileLoader::LoadObjectInstance(const char *line)
 #ifdef WEBOS_TOUCHPAD
 		// Log after CWorld::Add for CDummyObject
 		if(instanceCount <= 20) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadObjectInstance #%d: CDummyObject after CWorld::Add, m_rwObject=%p\n",
 					instanceCount, entity->m_rwObject);

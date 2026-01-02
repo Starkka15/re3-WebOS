@@ -243,7 +243,7 @@ GetGTA3ImgSize(void)
 {
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: START, gImgFiles[0]=%d\n", gImgFiles[0]);
 			fflush(log);
@@ -259,7 +259,7 @@ GetGTA3ImgSize(void)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: About to call realpath() with gImgNames[0]='%s'\n", gImgNames[0]);
 			fflush(log);
@@ -272,7 +272,7 @@ GetGTA3ImgSize(void)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: realpath() returned path='%s'\n", path);
 			fflush(log);
@@ -284,7 +284,7 @@ GetGTA3ImgSize(void)
 	if (stat(path, &statbuf) == -1) {
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "GetGTA3ImgSize: stat() failed, trying casepath()\n");
 				fflush(log);
@@ -310,7 +310,7 @@ GetGTA3ImgSize(void)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "GetGTA3ImgSize: stat() succeeded, size=%u\n", (uint32)statbuf.st_size);
 			fflush(log);
@@ -353,7 +353,7 @@ CdStreamRead(int32 channel, void *buffer, uint32 offset, uint32 size)
 	ASSERT( hImage > 0 );
 
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "CdStreamRead: channel=%d, offset=0x%X, size=%u, imgIndex=%u, hImage=%d\n",
 			channel, offset, size, _GET_INDEX(offset), hImage);
@@ -561,7 +561,7 @@ void *CdStreamThread(void *param)
 
 #ifdef WEBOS_TOUCHPAD
 			size_t seekOffset = (size_t)pChannel->nSectorOffset * (size_t)CDSTREAM_SECTOR_SIZE;
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "CdStream: Seeking to sector %u, byte offset %zu\n",
 					pChannel->nSectorOffset, seekOffset);
@@ -630,7 +630,7 @@ CdStreamAddImage(char const *path)
 {
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			char cwd[1024];
 			getcwd(cwd, sizeof(cwd));
@@ -650,7 +650,7 @@ CdStreamAddImage(char const *path)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CdStreamAddImage: open() returned %d (errno=%d: %s)\n",
 				gImgFiles[gNumImages], errno, strerror(errno));
@@ -664,7 +664,7 @@ CdStreamAddImage(char const *path)
 	if (gImgFiles[gNumImages] == -1) {
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "CdStreamAddImage: open() failed, trying casepath()\n");
 				fflush(log);
@@ -678,7 +678,7 @@ CdStreamAddImage(char const *path)
 			gImgFiles[gNumImages] = open(real, _gdwCdStreamFlags);
 #ifdef WEBOS_TOUCHPAD
 			{
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					fprintf(log, "CdStreamAddImage: casepath open() returned %d\n", gImgFiles[gNumImages]);
 					fflush(log);
@@ -693,7 +693,7 @@ CdStreamAddImage(char const *path)
 	if ( gImgFiles[gNumImages] == -1 ) {
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "CdStreamAddImage: FAILED - returning false\n");
 				fflush(log);
@@ -710,7 +710,7 @@ CdStreamAddImage(char const *path)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CdStreamAddImage: SUCCESS - gImgFiles[%d]=%d (raw fd=%d), gImgNames[%d]='%s'\n",
 				gNumImages, gImgFiles[gNumImages], gImgFiles[gNumImages] - 1, gNumImages, gImgNames[gNumImages]);
@@ -736,7 +736,7 @@ CdStreamAddImage(char const *path)
 
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CdStreamAddImage: COMPLETE - gNumImages now %d\n", gNumImages);
 			fflush(log);

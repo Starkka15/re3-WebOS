@@ -3021,13 +3021,13 @@ CMenuManager::DrawFrontEndNormal()
 
 		if (m_nMenuFadeAlpha > 255){
 #ifdef WEBOS_TOUCHPAD
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) { fprintf(log, "DrawFrontEndNormal: Drawing menu sprite %d (fade > 255, alpha=255)\n", currentSprite); fflush(log); fclose(log); }
 #endif
 			m_aMenuSprites[currentSprite].Draw(CRect(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT), CRGBA(255, 255, 255, 255));
 		} else {
 #ifdef WEBOS_TOUCHPAD
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) { fprintf(log, "DrawFrontEndNormal: Drawing menu sprite %d with alpha=%d\n", currentSprite, m_nMenuFadeAlpha); fflush(log); fclose(log); }
 #endif
 			RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, (void*)TRUE);
@@ -3035,7 +3035,7 @@ CMenuManager::DrawFrontEndNormal()
 		}
 	} else {
 #ifdef WEBOS_TOUCHPAD
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "DrawFrontEndNormal: Drawing menu sprite %d (fade=255, alpha=255)\n", currentSprite); fflush(log); fclose(log); }
 #endif
 		m_aMenuSprites[currentSprite].Draw(CRect(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT), CRGBA(255, 255, 255, 255));
@@ -3635,7 +3635,7 @@ void
 CMenuManager::LoadAllTextures()
 {
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadAllTextures: START, m_bSpritesLoaded=%d\n", m_bSpritesLoaded); fflush(log); fclose(log); }
 #endif
 

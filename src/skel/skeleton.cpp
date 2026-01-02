@@ -306,7 +306,7 @@ RsRwInitialize(void *displayID)
 {
 	RwEngineOpenParams  openParams;
 
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "[RsRwInitialize] Starting RenderWare initialization\n"); fflush(log); }
 
 	PUSH_MEMID(MEMID_RENDER);	// NB: not popped on failed return

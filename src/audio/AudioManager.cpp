@@ -59,7 +59,7 @@ cAudioManager::~cAudioManager()
 void
 cAudioManager::Initialise()
 {
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "[AudioManager::Initialise] Starting audio initialization\n"); fflush(log); }
 
 	if (!m_bIsInitialised) {

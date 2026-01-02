@@ -133,7 +133,7 @@ CStreaming::Init2(void)
 	int i;
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "CStreaming::Init2: START\n");
 		fflush(log);
@@ -152,7 +152,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: Initialized %d stream info slots\n", NUMSTREAMINFO);
 			fflush(log);
@@ -197,7 +197,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: Channels initialized\n");
 			fflush(log);
@@ -224,7 +224,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: Marked loaded models and TXDs\n");
 			fflush(log);
@@ -247,7 +247,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: About to call LoadCdDirectory()\n");
 			fflush(log);
@@ -260,7 +260,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: LoadCdDirectory() completed, buffer size = %d\n", ms_streamingBufferSize);
 			fflush(log);
@@ -275,7 +275,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: About to allocate streaming buffer (%d sectors)\n", ms_streamingBufferSize);
 			fflush(log);
@@ -288,7 +288,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: RwMallocAlign returned %p\n", ms_pStreamingBuffer[0]);
 			fflush(log);
@@ -303,7 +303,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: About to allocate streaming buffer (%d sectors, 4 channels)\n", ms_streamingBufferSize);
 			fflush(log);
@@ -316,7 +316,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: RwMallocAlign returned %p\n", ms_pStreamingBuffer[0]);
 			fflush(log);
@@ -345,7 +345,7 @@ CStreaming::Init2(void)
 		desiredNumVehiclesLoaded = MAXVEHICLESLOADED;
 	debug("webOS: Memory allocated to Streaming is %zuMB (fixed allocation)", ms_memoryAvailable/MB);
 	debug("webOS: desiredNumVehiclesLoaded = %d", desiredNumVehiclesLoaded);
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "Streaming Init: Allocated %d MB for streaming (ms_memoryAvailable=%d)\n",
 			ms_memoryAvailable/MB, ms_memoryAvailable);
@@ -383,7 +383,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			int poolSize = CPools::GetBuildingPool()->GetSize();
 			fprintf(log, "CStreaming::Init2: About to iterate building pool (size=%d)\n", poolSize);
@@ -406,7 +406,7 @@ CStreaming::Init2(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CStreaming::Init2: COMPLETED successfully\n");
 			fflush(log);
@@ -528,7 +528,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: START\n");
 			fflush(log);
@@ -541,7 +541,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: Setting image offsets\n");
 			fflush(log);
@@ -565,7 +565,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: About to call GetGTA3ImgSize()\n");
 			fflush(log);
@@ -578,7 +578,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: GetGTA3ImgSize() returned %d\n", ms_imageSize);
 			fflush(log);
@@ -591,7 +591,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: About to call CdStreamGetNumImages()\n");
 			fflush(log);
@@ -604,7 +604,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: CdStreamGetNumImages() returned %d\n", i);
 			fprintf(log, "LoadCdDirectory: FIXED - Processing images in FORWARD order so gta3.dir overrides txd.dir\n");
@@ -618,7 +618,7 @@ CStreaming::LoadCdDirectory(void)
 	for(int j = 0; j < i; j++){
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadCdDirectory: Processing image %d\n", j);
 				fflush(log);
@@ -630,7 +630,7 @@ CStreaming::LoadCdDirectory(void)
 		strncpy(strrchr(dirname, '.') + 1, "DIR", 3);
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadCdDirectory: About to load directory '%s'\n", dirname);
 				fflush(log);
@@ -641,7 +641,7 @@ CStreaming::LoadCdDirectory(void)
 		LoadCdDirectory(dirname, j);
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadCdDirectory: Finished loading directory '%s'\n", dirname);
 				fflush(log);
@@ -656,7 +656,7 @@ CStreaming::LoadCdDirectory(void)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory: COMPLETED\n");
 			fflush(log);
@@ -677,7 +677,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory(dirname='%s', n=%d): START\n", dirname, n);
 			fflush(log);
@@ -692,7 +692,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory(dirname='%s', n=%d): File opened, fd=%d\n", dirname, n, fd);
 			fflush(log);
@@ -711,7 +711,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 	while(CFileMgr::Read(fd, (char*)&direntry, sizeof(direntry))){
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 		if((++entryCount % 500) == 0) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "LoadCdDirectory: Read %d entries from '%s'\n", entryCount, dirname);
 				fflush(log);
@@ -756,7 +756,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 			}else{
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 				if(!CGeneral::faststricmp(direntry.name, "POLICE") || !CGeneral::faststricmp(direntry.name, "TAXI")) {
-					FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+					FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 					if (log) {
 						fprintf(log, "LoadCdDirectory: TXD=%s, raw offset=%u (0x%X), size=%u, imgSelector=0x%X\n",
 							direntry.name, direntry.offset, direntry.offset, direntry.size, imgSelector);
@@ -768,7 +768,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 				direntry.offset |= imgSelector;
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 				if(!CGeneral::faststricmp(direntry.name, "POLICE") || !CGeneral::faststricmp(direntry.name, "TAXI")) {
-					FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+					FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 					if (log) {
 						fprintf(log, "LoadCdDirectory: TXD=%s, combined offset=%u (0x%X), storing to slot %d\n",
 							direntry.name, direntry.offset, direntry.offset, txdId + STREAM_OFFSET_TXD);
@@ -788,7 +788,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory(dirname='%s', n=%d): Read complete, %d entries, buffer size now %d\n",
 				dirname, n, entryCount, ms_streamingBufferSize);
@@ -802,7 +802,7 @@ CStreaming::LoadCdDirectory(const char *dirname, int n)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadCdDirectory(dirname='%s', n=%d): COMPLETED\n", dirname, n);
 			fflush(log);
@@ -940,7 +940,7 @@ CStreaming::ConvertBufferToObject(int8 *buf, int32 streamId)
 		if(!success){
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 			ms_loadFailureCount[streamId]++;
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "Streaming: Failed to load %s.txd (attempt %d/%d)\n",
 					CTxdStore::GetTxdName(streamId - STREAM_OFFSET_TXD),
@@ -1216,7 +1216,7 @@ CStreaming::RequestBigBuildings(eLevelName level)
 
 	n = CPools::GetBuildingPool()->GetSize()-1;
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "RequestBigBuildings: START - Pool size=%d, level=%d\n", n+1, level);
 		fflush(log); fclose(log);
@@ -1231,7 +1231,7 @@ CStreaming::RequestBigBuildings(eLevelName level)
 #ifdef WEBOS_TOUCHPAD
 		// webOS: Log first few building levels to diagnose level detection issue
 		if(i < 10) {
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "  Building[%d]: level=%d, isBig=%d, pos=(%.1f,%.1f,%.1f)\n",
 					i, b ? b->m_level : -1, b ? b->bIsBIGBuilding : 0,
@@ -1255,7 +1255,7 @@ CStreaming::RequestBigBuildings(eLevelName level)
 #ifdef WEBOS_TOUCHPAD
 			requestCount++;
 			if(requestCount <= 10) {
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					fprintf(log, "  Requested model %d for building %d (level=%d)\n", b->GetModelIndex(), i, b->m_level);
 					fflush(log); fclose(log);
@@ -1266,7 +1266,7 @@ CStreaming::RequestBigBuildings(eLevelName level)
 	}
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "RequestBigBuildings: END - Requested %d big building models\n", requestCount);
 			fflush(log); fclose(log);
@@ -2518,7 +2518,7 @@ CStreaming::LoadAllRequestedModels(bool priority)
 	static int loadCallCount = 0;
 	loadCallCount++;
 	if(loadCallCount <= 5) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadAllRequestedModels #%d: START (priority=%d)\n", loadCallCount, priority);
 			fflush(log); fclose(log);
@@ -2539,7 +2539,7 @@ CStreaming::LoadAllRequestedModels(bool priority)
 #ifdef WEBOS_TOUCHPAD
 			// Log every model/texture being loaded in LoadAllRequestedModels #3
 			if(loadCallCount == 3) {
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					const char* name = streamId < STREAM_OFFSET_TXD ?
 						CModelInfo::GetModelInfo(streamId)->GetModelName() :
@@ -2558,7 +2558,7 @@ CStreaming::LoadAllRequestedModels(bool priority)
 			MakeSpaceFor(size * CDSTREAM_SECTOR_SIZE);
 #ifdef WEBOS_TOUCHPAD
 			if(loadCallCount == 3) {
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					fprintf(log, "  About to ConvertBufferToObject...\n");
 					fflush(log); fclose(log);
@@ -2568,7 +2568,7 @@ CStreaming::LoadAllRequestedModels(bool priority)
 			ConvertBufferToObject(ms_pStreamingBuffer[0], streamId);
 #ifdef WEBOS_TOUCHPAD
 			if(loadCallCount == 3) {
-				FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+				FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 				if (log) {
 					fprintf(log, "  ConvertBufferToObject completed, loadState=%d\n", ms_aInfoForModel[streamId].m_loadState);
 					fflush(log); fclose(log);
@@ -2597,7 +2597,7 @@ CStreaming::LoadAllRequestedModels(bool priority)
 	ms_channel[1].state = CHANNELSTATE_IDLE;
 #ifdef WEBOS_TOUCHPAD
 	if(loadCallCount <= 5) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "LoadAllRequestedModels #%d: END\n", loadCallCount);
 			fflush(log); fclose(log);
@@ -3187,7 +3187,7 @@ CStreaming::MakeSpaceFor(int32 size)
 	static int makeSpaceCallCount = 0;
 	makeSpaceCallCount++;
 	if(makeSpaceCallCount <= 20 || (makeSpaceCallCount % 100) == 0) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "MakeSpaceFor #%d: Need %d bytes, Used=%d MB, Available=%d MB, Free=%d MB\n",
 				makeSpaceCallCount, size, ms_memoryUsed/(1024*1024), ms_memoryAvailable/(1024*1024),
@@ -3199,7 +3199,7 @@ CStreaming::MakeSpaceFor(int32 size)
 	while(ms_memoryUsed >= ms_memoryAvailable - size)
 		if(!RemoveLeastUsedModel()) {
 #ifdef WEBOS_TOUCHPAD
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "MakeSpaceFor: RemoveLeastUsedModel FAILED - calling DeleteRwObjectsBehindCamera\n");
 				fflush(log); fclose(log);
@@ -3218,7 +3218,7 @@ CStreaming::LoadScene(const CVector &pos)
 
 	level = CTheZones::GetLevelFromPosition(&pos);
 #ifdef WEBOS_TOUCHPAD
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "LoadScene: Player position=(%.1f, %.1f, %.1f), level=%d\n", pos.x, pos.y, pos.z, level);
 		fflush(log); fclose(log);

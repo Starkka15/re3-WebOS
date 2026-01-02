@@ -451,7 +451,7 @@ CameraSize(RwCamera * camera, RwRect * rect,
 		   RwReal viewWindow, RwReal aspectRatio)
 {
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CameraSize: Called with camera=%p, rect=%p\n", camera, rect); fflush(log); fclose(log); }
 #endif
 
@@ -751,7 +751,7 @@ RwCamera           *
 CameraCreate(RwInt32 width, RwInt32 height, RwBool zBuffer)
 {
 	RwCamera           *camera;
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 
 	if (log) { fprintf(log, "CameraCreate: Creating camera...\n"); fflush(log); }
 	camera = RwCameraCreate();

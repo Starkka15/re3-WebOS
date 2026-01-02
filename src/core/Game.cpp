@@ -158,7 +158,7 @@ void MessageScreen(char *msg)
 bool
 CGame::InitialiseOnceBeforeRW(void)
 {
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "InitialiseOnceBeforeRW: About to call CFileMgr::Initialise()\n"); fflush(log); fclose(log); }
 
 	CFileMgr::Initialise();
@@ -221,7 +221,7 @@ void ReplaceAtomicPipeCallback();
 bool
 CGame::InitialiseRenderWare(void)
 {
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CGame::InitialiseRenderWare() started\n"); fflush(log); }
 
 #ifdef USE_TEXTURE_POOL
@@ -415,7 +415,7 @@ bool CGame::InitialiseOnceAfterRW(void)
 {
 #if GTA_VERSION > GTA3_PS2_160
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "InitialiseOnceAfterRW: Starting\n"); fflush(log); fclose(log); }
 #endif
 	TheText.Load();
@@ -712,7 +712,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: About to call CStreaming::Init()\n");
 			fflush(log);
@@ -725,7 +725,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: CStreaming::Init() completed\n");
 			fflush(log);
@@ -738,7 +738,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: LoadInitialVehicles() completed\n");
 			fflush(log);
@@ -751,7 +751,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: LoadInitialPeds() completed\n");
 			fflush(log);
@@ -764,7 +764,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: RequestBigBuildings() completed\n");
 			fflush(log);
@@ -777,7 +777,7 @@ bool CGame::Initialise(const char* datFile)
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: LoadAllRequestedModels() completed\n");
 			fflush(log);
@@ -793,7 +793,7 @@ bool CGame::Initialise(const char* datFile)
 	LoadingScreen("Loading the Game", "Load animations", GetRandomSplashScreen());
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: About to LoadAnimFiles\n");
 			fflush(log); fclose(log);
@@ -805,7 +805,7 @@ bool CGame::Initialise(const char* datFile)
 	POP_MEMID();
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: LoadAnimFiles done, about to CPed::Initialise\n");
 			fflush(log); fclose(log);
@@ -816,7 +816,7 @@ bool CGame::Initialise(const char* datFile)
 	CPed::Initialise();
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: CPed::Initialise done\n");
 			fflush(log); fclose(log);
@@ -831,7 +831,7 @@ bool CGame::Initialise(const char* datFile)
 	LoadingScreen("Loading the Game", "Find big buildings", nil);
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: About to CRenderer::Init\n");
 			fflush(log); fclose(log);
@@ -841,7 +841,7 @@ bool CGame::Initialise(const char* datFile)
 	CRenderer::Init();
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "CGame::Initialise: CRenderer::Init done\n");
 			fflush(log); fclose(log);
@@ -1180,7 +1180,7 @@ void CGame::InitialiseWhenRestarting(void)
 #else
 #ifdef WEBOS_TOUCHPAD
 	{
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			CVector camPos = TheCamera.GetPosition();
 			fprintf(log, "Game::Initialise: m_bWantToLoad=%d, CameraPos=(%.1f,%.1f,%.1f)\n",
@@ -1193,7 +1193,7 @@ void CGame::InitialiseWhenRestarting(void)
 	{
 #ifdef WEBOS_TOUCHPAD
 		{
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) {
 				fprintf(log, "Game::Initialise: Loading save file, calling RestoreForStartLoad and LoadScene\n");
 				fflush(log); fclose(log);
@@ -1205,7 +1205,7 @@ void CGame::InitialiseWhenRestarting(void)
 	}
 #ifdef WEBOS_TOUCHPAD
 	else {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "Game::Initialise: NEW GAME - skipping LoadScene, will load after player spawns\n");
 			fflush(log); fclose(log);
@@ -1330,7 +1330,7 @@ void CGame::Process(void)
 #ifdef WEBOS_TOUCHPAD
 	// Log first 100 frames to track crash
 	if (frameCount < 100) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) {
 			fprintf(log, "\n=== FRAME %d START (Time: %d ms) ===\n", frameCount, CTimer::GetTimeInMilliseconds());
 
@@ -1349,14 +1349,14 @@ void CGame::Process(void)
 #endif
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: First call - about to CPad::UpdatePads()\n"); fflush(log); fclose(log); }
 	}
 
 	CPad::UpdatePads();
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: CPad::UpdatePads() succeeded\n"); fflush(log); fclose(log); }
 	}
 
@@ -1365,7 +1365,7 @@ void CGame::Process(void)
 #endif
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: About to set motion blur\n"); fflush(log); fclose(log); }
 	}
 
@@ -1374,7 +1374,7 @@ void CGame::Process(void)
 		TheCamera.SetMotionBlur(0, 0, 0, 0, MOTION_BLUR_NONE);
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: Motion blur set, about to CCutsceneMgr::Update()\n"); fflush(log); fclose(log); }
 	}
 
@@ -1384,7 +1384,7 @@ void CGame::Process(void)
 	CCutsceneMgr::Update();
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: CCutsceneMgr done, about to FrontEndMenuManager\n"); fflush(log); fclose(log); }
 	}
 
@@ -1394,21 +1394,21 @@ void CGame::Process(void)
 	POP_MEMID();
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: FrontEnd done, about to CStreaming::Update()\n"); fflush(log); fclose(log); }
 	}
 
 	CStreaming::Update();
 
 	if (firstCall) {
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: CStreaming done, checking timer pause\n"); fflush(log); fclose(log); }
 		firstCall = false;
 	}
 	if (!CTimer::GetIsPaused())
 	{
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "CGame::Process: Timer not paused, about to CTheZones::Update()\n"); fflush(log); fclose(log); }
 #endif
 		CTheZones::Update();
@@ -1738,7 +1738,7 @@ void CGame::DrasticTidyUpMemory(bool flushDraw)
 {
 #ifdef WEBOS_TOUCHPAD
 	// WEBOS: Disable DrasticTidyUpMemory - appears to cause stack corruption
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) {
 		fprintf(log, "DrasticTidyUpMemory: DISABLED for webOS (returning early)\n");
 		fflush(log); fclose(log);

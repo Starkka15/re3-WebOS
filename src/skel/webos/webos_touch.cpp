@@ -184,7 +184,7 @@ void HandleTouchInput(SDL_Event* event)
                     pendingRelease |= button;
 
 #ifdef WEBOS_TOUCHPAD
-                    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                     if (log) {
                         fprintf(log, "Touch UP: button 0x%X marked for delayed release\n", button);
                         fflush(log);
@@ -242,7 +242,7 @@ void ProcessVirtualControls()
                     pendingRelease &= ~buttonBit;
 
 #ifdef WEBOS_TOUCHPAD
-                    FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+                    FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
                     if (log) {
                         fprintf(log, "ProcessVirtualControls: Released button 0x%X after %u ms\n",
                             buttonBit, currentTime - buttonPressTime[i]);
@@ -261,7 +261,7 @@ void ProcessVirtualControls()
 
     // Log when buttonState changes or every 60 frames
     if (buttonState != lastButtonState || (controlLogCount++ % 60 == 0 && buttonState != 0)) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if (log) {
             fprintf(log, "ProcessVirtualControls: buttonState=0x%X (was 0x%X), leftStick(%d,%d), rightStick(%d,%d)\n",
                 buttonState, lastButtonState,
@@ -318,7 +318,7 @@ void ProcessVirtualControls()
 #ifdef WEBOS_TOUCHPAD
     static int padLogCount = 0;
     if(padLogCount++ % 30 == 0 && (pad->NewState.DPadUp || pad->NewState.DPadDown || pad->NewState.Cross)) {
-        FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+        FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
         if(log) {
             fprintf(log, "ProcessVirtualControls: DPadUp=%d, DPadDown=%d, Cross=%d, OldCross=%d\n",
                 pad->NewState.DPadUp, pad->NewState.DPadDown, pad->NewState.Cross, pad->OldState.Cross);

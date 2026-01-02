@@ -590,7 +590,7 @@ PreAllocateRwObjects(void)
 static RwBool 
 Initialise3D(void *param)
 {
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "Initialise3D() called\n"); fflush(log); }
 
 	if (log) { fprintf(log, "Calling RsRwInitialize()...\n"); fflush(log); }
@@ -757,7 +757,7 @@ LoadingScreen(const char *str1, const char *str2, const char *splashscreen)
 	CSprite2d *splash;
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "LoadingScreen: Called with str1='%s', str2='%s'\n", str1 ? str1 : "NULL", str2 ? str2 : "NULL"); fflush(log); fclose(log); }
 #endif
 
@@ -1790,55 +1790,55 @@ Idle(void *arg)
 {
 	static bool firstCall = true;
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle() called for first time\n"); fflush(log); fclose(log); }
 	}
 
 #ifdef ASPECT_RATIO_SCALE
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CDraw::SetAspectRatio\n"); fflush(log); fclose(log); }
 	}
 	CDraw::SetAspectRatio(CDraw::FindAspectRatio());
 #endif
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CTimer::Update\n"); fflush(log); fclose(log); }
 	}
 	CTimer::Update();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call tbInit\n"); fflush(log); fclose(log); }
 	}
 	tbInit();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CSprite2d::InitPerFrame\n"); fflush(log); fclose(log); }
 	}
 	CSprite2d::InitPerFrame();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CFont::InitPerFrame\n"); fflush(log); fclose(log); }
 	}
 	CFont::InitPerFrame();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: CFont::InitPerFrame returned successfully\n"); fflush(log); fclose(log); }
 	}
 
 	// We're basically merging FrontendIdle and Idle (just like TheGame on PS2)
 #ifdef PS2_SAVE_DIALOG
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: PS2_SAVE_DIALOG is defined\n"); fflush(log); fclose(log); }
 	}
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: PS2_SAVE_DIALOG path, checking menu status\n"); fflush(log); fclose(log); }
 	}
 	// Only exists on PC FrontendIdle, probably some PS2 bug fix
@@ -1847,14 +1847,14 @@ Idle(void *arg)
 
 	if (FrontEndMenuManager.m_bGameNotLoaded) {
 		if (false) { // DISABLED firstCall logging
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) { fprintf(log, "Idle: Game not loaded, updating pads and processing menu\n"); fflush(log); fclose(log); }
 		}
 		CPad::UpdatePads();
 		FrontEndMenuManager.Process();
 	} else {
 		if (false) { // DISABLED firstCall logging
-			FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+			FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 			if (log) { fprintf(log, "Idle: Game loaded, processing game logic\n"); fflush(log); fclose(log); }
 		}
 		PUSH_MEMID(MEMID_GAME_PROCESS);
@@ -1873,54 +1873,54 @@ Idle(void *arg)
 		return;
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: Completed first section successfully\n"); fflush(log); fclose(log); }
 		firstCall = false;
 	}
 #else
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: PS2_SAVE_DIALOG NOT defined, taking #else path\n"); fflush(log); fclose(log); }
 	}
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call PUSH_MEMID(MEMID_GAME_PROCESS)\n"); fflush(log); fclose(log); }
 	}
 	PUSH_MEMID(MEMID_GAME_PROCESS);
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CPointLights::InitPerFrame()\n"); fflush(log); fclose(log); }
 	}
 	CPointLights::InitPerFrame();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: CPointLights::InitPerFrame() succeeded\n"); fflush(log); fclose(log); }
 	}
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call tbStartTimer\n"); fflush(log); fclose(log); }
 	}
 	tbStartTimer(0, "CGame::Process");
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call CGame::Process()\n"); fflush(log); fclose(log); }
 	}
 	CGame::Process();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: CGame::Process() completed\n"); fflush(log); fclose(log); }
 	}
 	tbEndTimer("CGame::Process");
 	POP_MEMID();
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: About to call DMAudio.Service()\n"); fflush(log); fclose(log); }
 	}
 	tbStartTimer(0, "DMAudio.Service");
@@ -1928,7 +1928,7 @@ Idle(void *arg)
 	tbEndTimer("DMAudio.Service");
 
 	if (false) { // DISABLED firstCall logging
-		FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+		FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 		if (log) { fprintf(log, "Idle: DMAudio.Service() completed\n"); fflush(log); fclose(log); }
 	}
 #endif
@@ -1950,7 +1950,7 @@ Idle(void *arg)
 		return;
 
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "Idle: About to PUSH_MEMID(MEMID_RENDER) - Starting rendering phase\n"); fflush(log); fclose(log); }
 #endif
 
@@ -2176,7 +2176,7 @@ void
 FrontendIdle(void)
 {
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "FrontendIdle: START\n"); fflush(log); fclose(log); }
 #endif
 

@@ -1101,7 +1101,7 @@ void CPad::AffectFromXinput(uint32 pad)
 void CPad::UpdatePads(void)
 {
 #ifdef WEBOS_VERBOSE_DEBUG_DISABLED
-	FILE *log = fopen("/media/internal/.gta3/debug.log", "a");
+	FILE *log = NULL; // fopen("/media/internal/.gta3/debug.log", "a");
 	if (log) { fprintf(log, "CPad::UpdatePads: START\n"); fflush(log); fclose(log); }
 #endif
 
