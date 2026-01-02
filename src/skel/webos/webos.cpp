@@ -386,21 +386,6 @@ void psCameraShowRaster(RwCamera *camera)
 
     // Swap buffers using SDL
     SDL_GL_SwapBuffers();
-
-#ifdef WEBOS_TOUCHPAD
-    // Frame limiter: Target 60 FPS (16.67ms per frame)
-    static Uint32 lastFrameTime = 0;
-    const Uint32 targetFrameTime = 17; // ~60 FPS (1000ms / 60 = 16.67ms)
-
-    Uint32 currentTime = SDL_GetTicks();
-    Uint32 elapsed = currentTime - lastFrameTime;
-
-    if (elapsed < targetFrameTime) {
-        SDL_Delay(targetFrameTime - elapsed);
-    }
-
-    lastFrameTime = SDL_GetTicks();
-#endif
 }
 
 /*
