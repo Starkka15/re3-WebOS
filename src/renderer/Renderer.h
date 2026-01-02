@@ -3,7 +3,13 @@
 class CEntity;
 
 #ifdef FIX_BUGS
+#ifdef WEBOS_TOUCHPAD
+// Reduce LOD distance for webOS TouchPad (Adreno 220)
+// Lower value = switch to low-detail models sooner = better performance
+#define LOD_DISTANCE (200.0f*TheCamera.LODDistMultiplier)
+#else
 #define LOD_DISTANCE (300.0f*TheCamera.LODDistMultiplier)
+#endif
 #else
 #define LOD_DISTANCE 300.0f
 #endif

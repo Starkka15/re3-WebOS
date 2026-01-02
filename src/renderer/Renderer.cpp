@@ -82,7 +82,13 @@ CLinkList<EntityInfo> gSortedBuildings;
 CVector CRenderer::ms_vecCameraPosition;
 CVehicle *CRenderer::m_pFirstPersonVehicle;
 bool CRenderer::m_loadingPriority;
+#ifdef WEBOS_TOUCHPAD
+// Reduce LOD distance for webOS TouchPad's weaker Adreno 220 GPU
+// This makes buildings switch to low-detail models sooner, reducing polygon count
+float CRenderer::ms_lodDistScale = 0.4f;  // Default is 1.2f
+#else
 float CRenderer::ms_lodDistScale = 1.2f;
+#endif
 
 // unused
 BlockedRange CRenderer::aBlockedRanges[16];

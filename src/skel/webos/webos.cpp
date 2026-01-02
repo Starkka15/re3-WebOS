@@ -386,6 +386,28 @@ void psCameraShowRaster(RwCamera *camera)
 
     // Swap buffers using SDL
     SDL_GL_SwapBuffers();
+
+#ifdef WEBOS_TOUCHPAD
+    // FPS counter for performance diagnosis
+    static Uint32 fpsLastTime = 0;
+    static int fpsFrameCount = 0;
+    static float currentFPS = 0.0f;
+
+    fpsFrameCount++;
+    Uint32 currentTime = SDL_GetTicks();
+    Uint32 elapsed = currentTime - fpsLastTime;
+
+    if (elapsed >= 1000) { // Update FPS every second
+        currentFPS = (fpsFrameCount * 1000.0f) / elapsed;
+        FILE* log = fopen("/media/internal/.gta3/debug.log", "a");
+        if (log) {
+            fprintf(log, "FPS: %.2f (frames=%d, time=%ums)\n", currentFPS, fpsFrameCount, elapsed);
+            fclose(log);
+        }
+        fpsFrameCount = 0;
+        fpsLastTime = currentTime;
+    }
+#endif
 }
 
 /*
