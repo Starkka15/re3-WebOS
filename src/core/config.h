@@ -539,7 +539,11 @@ enum Config {
 #endif
 #define BIG_IMG // Not complete - allows to read larger img files
 
-//#define SQUEEZE_PERFORMANCE
+#ifdef WEBOS_TOUCHPAD
+// Enable SQUEEZE_PERFORMANCE for webOS TouchPad's Adreno 220 GPU
+#define SQUEEZE_PERFORMANCE
+#endif
+
 #ifdef SQUEEZE_PERFORMANCE
 	#undef PS2_ALPHA_TEST
 	#undef NO_ISLAND_LOADING
